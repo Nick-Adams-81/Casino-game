@@ -8,6 +8,22 @@
 
 
  }
+ .container{
+     background-color: green;
+ }
+ #header{
+     text-align: center;
+ }
+ #function-btn{
+     text-align: center;
+ }
+ #hype-2{
+     text-align: center;
+ }
+ #bj-table{
+     background-image: url(https://cdn2.vectorstock.com/i/1000x1000/07/91/blackjack-table-vector-6320791.jpg);
+ }
+
 #h1{
     color:whitesmoke;
 
