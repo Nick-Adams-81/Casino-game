@@ -16,7 +16,7 @@ var cardValue = {
                  '4H': 4,
                  '4D': 4,
                  '4S': 4,
-                 '5C': 5,
+                 '5D': 5,
                  '5H': 5,
                  '5C': 5,
                  '5S': 5,
@@ -46,16 +46,16 @@ var cardValue = {
                  'JS': 10,
                  'QC': 10,
                  'QH': 10,
-                 'QC': 10,
+                 'QD': 10,
                  'QS': 10,
                  'KC': 10,
                  'KH': 10,
                  'KD': 10,
                  'KS': 10,
-                 'AC': [11,1],
-                 'AH': [11,1],
-                 'AC': [11,1],
-                 'AS': [11,1]
+                 'AC': 11,
+                 'AH': 11,
+                 'AD': 11,
+                 'AS': 11
                 } 
 var dealerHand = 0
 var playerHand = 0
@@ -68,11 +68,8 @@ var playerHand = 0
 
 
 $(document).ready(function(){
-  //card values
   
-
   
-
 //Start Game
 $("#deal").click(function(){
 
@@ -86,15 +83,21 @@ $("#deal").click(function(){
     var tRow = $("#dealer");
     var card = $("<img>").attr('src',response.cards[0].image)
                          .animate({height: '50%',width: '20%'})
-    var card2 = $("<img>").attr('src',response.cards[2].image)
+    var card2 = $("<img>").addClass('holeCard')
+                          .attr('src',response.cards[2].image)
                           .animate({height: '50%',width: '20%'})
+                          
 
+                                       
     tRow.append(card)
     tRow.append(card2)
 
-  
-  
+    dealerHand = cardValue[response.cards[0].code] + 
+                 cardValue[response.cards[2].code]
 
+    console.log(dealerHand)
+    
+    
     //player hand
     var tRow2 = $("#player");
     var cards = $("<img>").attr('src',response.cards[1].image)
@@ -103,19 +106,12 @@ $("#deal").click(function(){
                            .animate({height: '50%',width: '20%'})
     tRow2.append(cards)
     tRow2.append(cards2)
-   
-    dealerHand = cardValue[response.cards[0].code] + 
-                 cardValue[response.cards[2].code]
-          
-
-    console.log(dealerHand)
 
     playerHand = cardValue[response.cards[1].code] +
                  cardValue[response.cards[3].code]
+                        
 
-              
-   
-    console.log(playerHand)  
+    console.log(playerHand) 
   
   })
     
@@ -132,7 +128,16 @@ $("#hit").click(function(){
     var tRow2 = $("#player")
     var cards = $("<img>").attr('src', response.cards[0].image)
                           .animate({height: '50%',width: '20%'})
-  playerHand = playerHand + cardValue[response.cards[0].code] 
+    playerHand = playerHand + cardValue[response.cards[0].code]
+                 //score test
+                 //var total = $("<p>").text(playerHand)
+                //tRow2.append(total) 
+    if(playerHand > 21){
+    alert('You suck!!!')
+    
+  }
+   
+
   
   console.log(playerHand)
 
@@ -144,40 +149,39 @@ $("#hit").click(function(){
 });
   //stand function
 $("#stand").click(function(){
+    
   if(dealerHand < 17){
     $.ajax({
       url: hit,
       method:"GET"
     }).then(function(response){
       var tRow = $("#dealer");
+      var card2 = $("<img>").addClass("holeCard")
+                            .show()
       var cards = $("<img>").attr('src', response.cards[0].image)
-                            .animate({height: '50%', width: '20%'})
+                            .animate({height: '50%', width: '20%'})                     
       dealerHand = dealerHand + cardValue[response.cards[0].code]
+      //score test
+      //var total = $("<div>").text(dealerHand)
+      //tRow.append(total) 
+      if(dealerHand >= 17 && dealerHand <= 21 && dealerHand > playerHand){
+        alert("dealer wins You suck ASS!!!!!!")
+      }else{
+        alert('good job DICK FACE!!!')
+      }if(dealerHand === playerHand){
+        alert('Tie! FUCK US BOTH!!!!')
+      }
 
       console.log(dealerHand)
-
-      tRow.append(cards)
-      
-
-    })
     
+      
+      tRow.append(cards)
+      tRow.append(card2)
   
-
-  }
-  
+    }) 
+  } 
 });
-
-console.log(cardValue['4C'] + cardValue['0H'])
-
-
-
-
-
-
-
-
-
-
+  
 
 })
 
