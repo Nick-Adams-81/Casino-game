@@ -86,6 +86,7 @@ $("#deal").click(function(){
     var card2 = $("<img>").addClass('holeCard')
                           .attr('src',response.cards[2].image)
                           .animate({height: '50%',width: '20%'})
+                          .hide()
                           
 
                                        
@@ -156,16 +157,15 @@ $("#stand").click(function(){
       method:"GET"
     }).then(function(response){
       var tRow = $("#dealer");
-      var card2 = $("<img>").addClass("holeCard")
-                            .show()
       var cards = $("<img>").attr('src', response.cards[0].image)
                             .animate({height: '50%', width: '20%'})                     
       dealerHand = dealerHand + cardValue[response.cards[0].code]
+
       //score test
       //var total = $("<div>").text(dealerHand)
       //tRow.append(total) 
       if(dealerHand >= 17 && dealerHand <= 21 && dealerHand > playerHand){
-        alert("dealer wins You suck ASS!!!!!!")
+        alert("dealer wins! You suck ASS!!!!!!")
       }else{
         alert('good job DICK FACE!!!')
       }if(dealerHand === playerHand){
