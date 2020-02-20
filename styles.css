@@ -1,0 +1,45 @@
+body{
+    background-color: green;   
+}
+.top{
+    background-image: url(https://images.unsplash.com/photo-1517232115160-ff93364542dd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60);
+}
+
+
+#function-btn{
+    text-align: center;
+}
+#hype-2{
+    text-align: center;
+    font-weight: bolder;
+    color: whitesmoke;
+}
+
+#header{
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bolder;
+    color: whitesmoke;
+}
+#table{
+    background-color: green;
+}
+
+.bdm{
+    background-image: url(https://images.unsplash.com/photo-1512767254318-423c816efbf3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60);
+    position: sticky;
+    margin-top: auto;
+}
+footer{
+    text-align: center;
+    position: sticky;
+    z-index: 1;
+    background-color: cornflowerblue;
+}
+#nav-btn{
+ text-align: center;
+}
+
+
+   
+
