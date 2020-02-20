@@ -2,7 +2,22 @@ var deal = "https://deckofcardsapi.com/api/deck/new/draw/?count=3"
 var hit = "https://deckofcardsapi.com/api/deck/new/draw/?count=1"
 var deck = "https://deckofcardsapi.com/api/deck/new/"
 var stand = "https://deckofcardsapi.com/api/deck/new/draw/?count=1"
-var foaas = "http://foaas.com/off/Tom/Everyone?shoutcloud"
+var modal = $("#modal").hide()
+var span = $(".close")
+var insult = $("#insult")
+var insults = [
+               'go FUCK yourself',
+               'choke on a bag of dicks',
+               'thanks for being a loser',
+               'congrats ASSHOLE!!!',
+               'not sorry about your bad luck ASS FACE',
+               'way to go shit for brains',
+               'you stupid FUCK!!!',
+               'please jump off a cliff!!'
+               ]
+               
+
+
 var cardValue = {
                  '2C': 2,
                  '2H': 2,
@@ -135,7 +150,7 @@ $("#hit").click(function(){
                  //var total = $("<p>").text(playerHand)
                 //tRow2.append(total) 
     if(playerHand > 21){
-    alert('You suck!!!') 
+    alert('Way to go SHIT FOR BRAINS!!!!') 
   }
    
 
@@ -163,18 +178,19 @@ $("#stand").click(function(){
 
       if(dealerHand < 17){
         $.ajax({
-          url: hit,
+          url: stand,
           method: "GET"
         }).then(function(response){
           var tRow = $("#dealer");
           var cards = $("<img>").attr('src', response.cards[0].image)
                                 .animate({height: '50%', width: '20%'})
+                       
 
         dealerHand =  dealerHand + cardValue[response.cards[0].code]
           tRow.append(cards)
           console.log(dealerHand)
         })
-
+        
       }
       else if(dealerHand < 17){
         $.ajax({
@@ -184,35 +200,42 @@ $("#stand").click(function(){
           var tRow = $("#dealer");
           var cards = $("<img>").attr('src', response.cards[0].image)
                                 .animate({height: '50%', width: '20%'})
+                       
 
         dealerHand =  dealerHand + cardValue[response.cards[0].code]
           tRow.append(cards)
           console.log(dealerHand)
         })
-
+        
       }
 
-      if(dealerHand > playerHand && dealerHand < 22){
-        alert("dealer wins! You suck ASS!!!!!!")
-      }
-      else if(dealerHand > 21){
-        alert("good job ASSHOLE!!!")
-      }
-       else if(dealerHand === playerHand){
-        alert("TIE! were both FUCKED!!!")
-      }else if(playerHand > dealerHand && playerHand < 22){
-        alert('good job DICK FACE!!!')
-      }
+
+
       console.log(dealerHand)
       tRow.append(cards)
-    })     
+
+  
+    }) 
 });
+
+$("#msg").click(function(){
+  $("#modal").show()
+    var tRow = $("#insult")
+    var text = $("<p>").text(insults[0]) 
+                       
+                           
+    tRow.append(text)
+})
+
+$(".close").click(function(){
+  $("#modal").hide()       
+                        
+})
+
 $("#deal").click(function(){
   $("#dealer").empty()
   $("#player").empty()
-
 });
-  
 
 })
 
