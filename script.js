@@ -156,19 +156,7 @@ $(document).ready(function () {
 
 
         })
-      } else (dealerHand < 17); {
-        $.ajax({
-          url: hit,
-          method: "GET"
-        }).then(function (response) {
-          var tRow = $("#dealer");
-          var cards = $("<img>").attr('src', response.cards[0].image)
-            .animate({ height: '50%', width: '20%' })
-
-          dealerHand = dealerHand + cardValue[response.cards[0].code]
-          tRow.append(cards)
-        })
-      }
+      } 
 
       if (dealerHand > playerHand && dealerHand < 22) {
         swal("Dealer wins!", "You suck ASS!!!!!!")
