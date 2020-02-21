@@ -105,6 +105,10 @@ $(document).ready(function () {
 
       dealerHand = cardValue[response.cards[0].code]
 
+
+      
+
+
       //player hand
       var tRow2 = $("#player");
       var cards = $("<img>").attr('src', response.cards[1].image)
