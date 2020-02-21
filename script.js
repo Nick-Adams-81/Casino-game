@@ -105,10 +105,6 @@ $(document).ready(function () {
 
       dealerHand = cardValue[response.cards[0].code]
 
-
-      console.log(dealerHand)
-
-
       //player hand
       var tRow2 = $("#player");
       var cards = $("<img>").attr('src', response.cards[1].image)
@@ -136,10 +132,6 @@ $(document).ready(function () {
         swal("BLACKJACK MOTHERFUCKER !!!!!!")
       }
 
-
-
-      console.log(playerHand)
-
     })
 
 
@@ -162,9 +154,6 @@ $(document).ready(function () {
       }
 
 
-
-      console.log(playerHand)
-
       tRow2.append(cards)
 
 
@@ -176,7 +165,7 @@ $(document).ready(function () {
     if(dealerHand < 17){
       dealerDraw();
     } else {
-      console.log("fuk u")
+
     }
     
   });
@@ -207,7 +196,7 @@ $(document).ready(function () {
 
           dealerHand = dealerHand + cardValue[response.cards[0].code]
           tRow.append(cards)
-          console.log(dealerHand)
+        
 
         })
         if (dealerHand > playerHand && dealerHand < 22) {
@@ -216,7 +205,7 @@ $(document).ready(function () {
           swal('congrats fuckface')
         }
       }
-      console.log(dealerHand)
+    
       tRow.append(cards)
 
 
