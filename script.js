@@ -2,22 +2,7 @@ var deal = "https://deckofcardsapi.com/api/deck/new/draw/?count=3"
 var hit = "https://deckofcardsapi.com/api/deck/new/draw/?count=1"
 var deck = "https://deckofcardsapi.com/api/deck/new/"
 var stand = "https://deckofcardsapi.com/api/deck/new/draw/?count=1"
-var modal = $("#modal").hide()
-var span = $(".close")
-var insult = $("#insult")
-var insults = [
-  'go FUCK yourself',
-  'choke on a bag of dicks',
-  'thanks for being a loser',
-  'congrats ASSHOLE!!!',
-  'not sorry about your bad luck ASS FACE',
-  'way to go shit for brains',
-  'you stupid FUCK!!!',
-  'please jump off a cliff!!'
-]
-
-
-
+var foaas = "http://foaas.com/off/Tom/Everyone?shoutcloud"
 var cardValue = {
   '2C': 2,
   '2H': 2,
@@ -75,15 +60,7 @@ var cardValue = {
 var dealerHand = 0
 var playerHand = 0
 
-
-
-
-
-
-
-
 $(document).ready(function () {
-
 
   //Start Game
   $("#deal").click(function () {
@@ -94,14 +71,11 @@ $(document).ready(function () {
 
       //dealer hand
     }).then(function (response) {
-      console.log(response)
+
       var tRow = $("#dealer");
       var card = $("<img>").attr('src', response.cards[0].image)
         .animate({ height: '50%', width: '20%' })
-
-
       tRow.append(card)
-
 
       dealerHand = cardValue[response.cards[0].code]
 
@@ -116,26 +90,21 @@ $(document).ready(function () {
 
       playerHand = cardValue[response.cards[1].code] +
         cardValue[response.cards[2].code]
-      //players card number
+
+      //Update player's card number
       var playersNum = $('#players')
-      playersNum.text("Asshole's score: " + playerHand).css({ "font-family": "Arial, Helvetica, sans-serif", "font-size": "100%" });
+      playersNum.text("Asshole's score: " + playerHand).css({ "font-family": "Arial, Helvetica, sans-serif", "font-size": "150%" });
 
       //Update Dealer's card number
       var dealerNum = $('#dealers')
-      dealerNum.text("Dealer's score: " + dealerHand).css({ "font-family": "Arial, Helvetica, sans-serif", "font-size": "100%" });
-
-
-
+      dealerNum.text("Dealer's score: " + dealerHand).css({ "font-family": "Arial, Helvetica, sans-serif", "font-size": "150%" });
 
       if (playerHand === 21) {
-
-        swal("BLACKJACK MOTHERFUCKER !!!!!!")
+        swal("Yoohoo!", "BLACKJACK MOTHERFUCKER!!!!!!")
       }
-
     })
-
-
   });
+
 
   //take a hit
   $("#hit").click(function () {
@@ -143,34 +112,26 @@ $(document).ready(function () {
       url: hit,
       method: "GET"
     }).then(function (response) {
-      console.log(response)
       var tRow2 = $("#player")
       var cards = $("<img>").attr('src', response.cards[0].image)
         .animate({ height: '50%', width: '20%' })
       playerHand = playerHand + cardValue[response.cards[0].code]
 
-      if (playerHand > 21) {
-        swal('Way to go SHIT FOR BRAINS!!!!')
+      // if hit card is an A and total hand is over 21, subtract 10.
+      if ((cardValue[response.cards[0].code] == 11) && (playerHand > 21)) {
+        playerHand -= 10;
       }
 
-
+      if (playerHand > 21) {
+        swal("Get your busted ass outta here!!!")
+      }
       tRow2.append(cards)
-
-
     })
 
   });
   //stand function
-  $("#stand").click(function(){
-    if(dealerHand < 17){
-      dealerDraw();
-    } else {
+  $("#stand").click(function () {
 
-    }
-    
-  });
-
-  function dealerDraw() {
     $.ajax({
       url: hit,
       method: "GET"
@@ -180,56 +141,73 @@ $(document).ready(function () {
         .animate({ height: '50%', width: '20%' })
 
       dealerHand = dealerHand + cardValue[response.cards[0].code]
-      if (dealerHand === 21) {
-        swal('YOU LOSE FUCKER!!!!!')
-      }
 
       if (dealerHand < 17) {
         $.ajax({
-          url: stand,
+          url: hit,
           method: "GET"
         }).then(function (response) {
           var tRow = $("#dealer");
           var cards = $("<img>").attr('src', response.cards[0].image)
             .animate({ height: '50%', width: '20%' })
 
+          dealerHand = dealerHand + cardValue[response.cards[0].code]
+          tRow.append(cards)
+
+
+        })
+      } else (dealerHand < 17); {
+        $.ajax({
+          url: hit,
+          method: "GET"
+        }).then(function (response) {
+          var tRow = $("#dealer");
+          var cards = $("<img>").attr('src', response.cards[0].image)
+            .animate({ height: '50%', width: '20%' })
 
           dealerHand = dealerHand + cardValue[response.cards[0].code]
           tRow.append(cards)
-        
-
         })
-        if (dealerHand > playerHand && dealerHand < 22) {
-          swal("GET FUCKED!!!")
-        } else if (playerHand > dealerHand && playerHand < 22) {
-          swal('congrats fuckface')
-        }
       }
-    
+
+      if (dealerHand > playerHand && dealerHand < 22) {
+        swal("Dealer wins!", "You suck ASS!!!!!!")
+      }
+      else if (dealerHand > 21) {
+        swal("good job", "You ASSHOLE!!!")
+      }
+      else if (dealerHand === playerHand) {
+        swal("TIE!", "We're both FUCKED!!!")
+      } else if (playerHand > dealerHand && playerHand < 22) {
+        swal("Good job", "DICK FACE!!!")
+      }
+
       tRow.append(cards)
-
-
     })
-  }
-
-  $("#msg").click(function () {
-    $("#modal").show()
-    var tRow = $("#insult")
-    var text = $("<p>").text(insults[0, 1])
-
-
-    tRow.append(text)
-  })
-
-  $(".close").click(function () {
-    $("#modal").hide()
-
-  })
-
-
+  });
   $("#deal").click(function () {
     $("#dealer").empty()
     $("#player").empty()
+    $("#dealerhand").empty()
+    $("#playerhand").empty()
+
   });
 
+
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
