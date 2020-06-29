@@ -2,8 +2,7 @@
 This is a game made for the degenerate gambler, while your in a long line at DMV or just bored trying to pass the time, this game's got your back! The Foul Mouth Gambler is a former casino employees love letter to the casino business, also a little revenge from a dealers perspective.
 
 # Tech used
-for our css we're using Purecss, another form of bootstrap,
-the API's we will be using are Deck of Cards, and Foaas.
+
 * HTML
 * CSS 
 * JavaScript 
