@@ -78,7 +78,7 @@ $(document).ready(function () {
       tRow.append(card)
 
       dealerHand = cardValue[response.cards[0].code]
-      
+
 
       //player hand
       var tRow2 = $("#player");
@@ -92,7 +92,7 @@ $(document).ready(function () {
       playerHand = cardValue[response.cards[1].code] +
         cardValue[response.cards[2].code]
 
-      
+
 
       if (playerHand === 21) {
         swal("BLACKJACK MOTHERFUCKER!!!!!!")
@@ -175,39 +175,39 @@ $(document).ready(function () {
     $("#playerhand").empty()
 
   });
- //war
-  $("#deal2").click(function(){
-    
+  //war
+  $("#deal2").click(function () {
+
     $.ajax({
       url: stand,
       method: "GET"
-    }).then(function(response){
+    }).then(function (response) {
       console.log(response)
       //dealer hand
       var tRow = $(".dealers1")
-      var card = $("<img>").attr( 'src', response.cards[0].image)
-                            .animate({ height: '60%', width: '40%'})
-       dealerHand = cardValue[response.cards[0].value]
-      
+      var card = $("<img>").attr('src', response.cards[0].image)
+        .animate({ height: '35%', width: '10%' })
+      dealerHand = cardValue[response.cards[0].value]
+
       //player hand
       var tRow2 = $(".players1")
-      var cards = $("<img>").attr( 'src', response.cards[1].image)
-                            .animate({ height: '60%', width: '40%'})
-        playerHand = cardValue[response.cards[1].value]
-       
+      var cards = $("<img>").attr('src', response.cards[1].image)
+        .animate({ height: '35%', width: '10%' })
+      playerHand = cardValue[response.cards[1].value]
+
       tRow.append(card)
       tRow2.append(cards)
 
-    
-      if(dealerHand < playerHand){
+
+      if (dealerHand < playerHand) {
         swal('You lose BITCH!!!')
       }
-       
-  
-      
+
+
+
 
     })
-    $("#deal2").click(function(){
+    $("#deal2").click(function () {
       $(".dealers1").empty()
       $(".players1").empty()
     })

@@ -32,8 +32,8 @@ body{
 }
 footer{
     text-align: center;
-    position: sticky;
-    z-index: 1;
+    position: fixed;
+    z-index: 4;
     background-color: cornflowerblue;
 }
 #nav-btn{
@@ -67,6 +67,16 @@ footer{
     font-size: 28px;
     font-weight: bold;
 }
+#dealers1 {
+
+}
+#players1 {
+   
+    
+}
+
+
+
 
 
 
