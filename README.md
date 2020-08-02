@@ -24,9 +24,9 @@ actual gambling, if you or anyone you know have a gambling problem call
 * https://thebigdeal916.github.io/Casino-game/
 
 # Authored By
- * Nick Adams
- * Don Nguyen
- * Michael Le
+ * Nick Adams - Design
+ * Don Nguyen - Functionality 
+ * Michael Le - Testing and support
 
  # Acknowledgements
  * Treighton mauldin
