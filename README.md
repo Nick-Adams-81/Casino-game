@@ -28,3 +28,10 @@ actual gambling, if you or anyone you know have a gambling problem call
  * Don Nguyen
  * Michael Le
 
+ # Acknowledgements
+ * Treighton mauldin
+ * Allan Wong
+ * Chris Song
+
+
+
